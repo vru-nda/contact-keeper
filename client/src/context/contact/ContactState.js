@@ -30,6 +30,8 @@ const ContactState = (props) => {
         type: 'professional',
       },
     ],
+    current: null,
+    filtered: null,
   };
   const [state, dispath] = useReducer(contactReducer, intialState);
 
@@ -45,20 +47,43 @@ const ContactState = (props) => {
   };
 
   //set current contact
+  const setCurrent = (contact) => {
+    dispath({ type: SET_CURRENT, payload: contact });
+  };
 
-  //delete current contact
+  //clear current contact
+  const clearCurrent = () => {
+    dispath({ type: CLEAR_CURRENT });
+  };
 
   //update contact
+  const updateContact = (contact) => {
+    dispath({ type: UPDATE_CONTACT, payload: contact });
+  };
 
   //filter contacts
+  const filterContacts = (text) => {
+    dispath({ type: FILTER_CONTACTS, payload: text });
+  };
 
   //clear filter
+  const clearFilter = () => {
+    dispath({ type: CLEAR_FILTER });
+  };
+
   return (
     <ContactContext.Provider
       value={{
         contacts: state.contacts,
+        current: state.current,
+        filtered: state.filtered,
         addContact,
         deleteContact,
+        setCurrent,
+        clearCurrent,
+        updateContact,
+        filterContacts,
+        clearFilter,
       }}
     >
       {props.children}
