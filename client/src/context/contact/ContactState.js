@@ -35,13 +35,14 @@ const ContactState = (props) => {
 
   //Add contact
   const addContact = (contact) => {
-    console.log(contact);
     contact.id = uuid();
-    console.log(contact);
     dispath({ type: ADD_CONTACT, payload: contact });
   };
 
   //delete contact
+  const deleteContact = (id) => {
+    dispath({ type: DELETE_CONTACT, payload: id });
+  };
 
   //set current contact
 
@@ -57,6 +58,7 @@ const ContactState = (props) => {
       value={{
         contacts: state.contacts,
         addContact,
+        deleteContact,
       }}
     >
       {props.children}
