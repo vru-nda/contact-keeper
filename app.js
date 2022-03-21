@@ -15,7 +15,7 @@ app.use(express.json({ extended: false }));
 
 const PORT = process.env.PORT || 5000;
 
-app.get('/', (req, res) => res.json({ msg: 'Hello World!' }));
+app.get('/', (req, res) => res.json({ msg: 'Welcome to contact keeper' }));
 
 // /api/users ==>
 app.use('/api/users', usersRoutes);

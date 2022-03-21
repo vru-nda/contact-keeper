@@ -11,7 +11,6 @@ const Contacts = () => {
     return <h4> Please Add a contact</h4>;
   }
 
-  console.log(filtered); //undefined
   return (
     <Fragment>
       {filtered !== null

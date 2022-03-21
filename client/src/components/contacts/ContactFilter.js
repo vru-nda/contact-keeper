@@ -6,11 +6,11 @@ const ContactFilter = () => {
   const { filterContacts, clearFilter, filtered } = contactContext;
   const text = useRef('');
 
-  useEffect(() => {
-    if (filtered === null) {
-      text.current.value = '';
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (filtered === null) {
+  //     text.current.value = '';
+  //   }
+  // }, []);
 
   const onChange = (e) => {
     if (text.current.value !== '') {

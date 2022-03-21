@@ -384,7 +384,7 @@ table th {
   margin-right: 0.6rem;
 }
 
-/* Animation (Add After) */
+/* Animation (Add After)
 .item-enter {
   opacity: 0;
 }
@@ -398,7 +398,7 @@ table th {
 .item-exit-active {
   opacity: 0;
   transition: opacity 1000ms ease-in;
-}
+} */
 
 /* Mobile Styles */
 @media (max-width: 700px) {

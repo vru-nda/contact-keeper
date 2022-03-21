@@ -28,20 +28,25 @@ router.post(
 
     const { name, email, password } = req.body;
 
+    // find existing user
     try {
       let user = await User.findOne({ email });
       if (user) {
         return res.status(400).json({ msg: 'User Already exist!' });
       }
 
+      // create new user
       user = new User({
         name,
         email,
         password,
       });
 
+      // encrypt password
       user.password = await bcrypt.hash(password, 12);
       await user.save();
+
+      //userid to pass in the payload
       const payload = {
         user: {
           id: user.id,
