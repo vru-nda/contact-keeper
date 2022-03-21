@@ -1,6 +1,25 @@
-import React, { useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import AlertContext from '../../context/alert/AlertContext';
+import AuthContext from '../../context/auth/AuthContext';
 
-const Login = () => {
+const Login = (props) => {
+  const alertContext = useContext(AlertContext);
+  const authContext = useContext(AuthContext);
+
+  const { setAlert } = alertContext;
+  const { isAuth, login, error, clearErrors } = authContext;
+
+  useEffect(() => {
+    if (isAuth) {
+      props.history.push('/');
+    }
+    if (error === 'Invalid Credentails!') {
+      setAlert(error, 'danger');
+      clearErrors();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [error, isAuth, props.history]);
+
   const [user, setUser] = useState({
     email: '',
     password: '',
@@ -14,7 +33,11 @@ const Login = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log('Login submit');
+    if (email === '' || password === '') {
+      setAlert('Please enter all fields', 'danger');
+    } else {
+      login({ email, password });
+    }
   };
 
   return (
@@ -25,7 +48,13 @@ const Login = () => {
       <form onSubmit={onSubmit}>
         <div className='form-group'>
           <label htmlFor='email'>Email Address</label>
-          <input type='email' name='email' value={email} onChange={onChange} />
+          <input
+            type='email'
+            name='email'
+            value={email}
+            onChange={onChange}
+            required
+          />
         </div>
         <div className='form-group'>
           <label htmlFor='password'>Password</label>
@@ -34,6 +63,7 @@ const Login = () => {
             name='password'
             value={password}
             onChange={onChange}
+            required
           />
         </div>
 
