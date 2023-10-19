@@ -10,6 +10,7 @@ import {
   CONTACT_ERROR,
   GET_CONTACTS,
   CLEAR_CONTACTS,
+  CLEAR_CONTACT_ERRORS,
 } from '../types';
 
 export default (state, action) => {
@@ -79,6 +80,7 @@ export default (state, action) => {
         error: null,
         current: null,
       };
+    
     case CLEAR_FILTER:
       return {
         ...state,
@@ -89,6 +91,12 @@ export default (state, action) => {
       return {
         ...state,
         error: action.payload,
+      };
+    
+      case CLEAR_CONTACT_ERRORS:
+      return {
+        ...state,
+        error: null,
       };
 
     default:

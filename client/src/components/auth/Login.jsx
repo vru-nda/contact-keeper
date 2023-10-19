@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
+
 import AlertContext from '../../context/alert/AlertContext';
 import AuthContext from '../../context/auth/AuthContext';
 
@@ -13,7 +14,7 @@ const Login = (props) => {
     if (isAuth) {
       props.history.push('/');
     }
-    if (error === 'Invalid Credentails!') {
+    if (error) {
       setAlert(error, 'danger');
       clearErrors();
     }
